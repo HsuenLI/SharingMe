@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpController : UIViewController {
     
@@ -23,6 +24,7 @@ class SignUpController : UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.addTarget(self, action: #selector(handleTextInput), for: .editingChanged)
         return tf
     }()
     
@@ -32,6 +34,7 @@ class SignUpController : UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.addTarget(self, action: #selector(handleTextInput), for: .editingChanged)
         return tf
     }()
     
@@ -42,6 +45,7 @@ class SignUpController : UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.addTarget(self, action: #selector(handleTextInput), for: .editingChanged)
         return tf
     }()
     
@@ -49,13 +53,25 @@ class SignUpController : UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.backgroundColor = UIColor(red: 255, green: 137, blue: 35)
+        button.backgroundColor = UIColor(red: 255, green: 223, blue: 182)
         button.tintColor = .white
         button.layer.cornerRadius = 5.0
         button.layer.masksToBounds = true
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.isEnabled = false
         return button
     }()
+    
+    @objc func handleTextInput(){
+        let isFormValidate = emailTextField.text?.count ?? 0 > 0 && passwordTextField.text?.count ?? 0 > 0 && usernameTextField.text?.count ?? 0 > 0
+        if isFormValidate{
+            signUpButton.isEnabled = true
+            signUpButton.backgroundColor = UIColor(red: 255, green: 137, blue: 35)
+        }else{
+            signUpButton.isEnabled = false
+            signUpButton.backgroundColor = UIColor(red: 255, green: 223, blue: 182)
+        }
+    }
     
     let hasAccountButton : UIButton = {
         let button = UIButton(type: .system)
@@ -105,14 +121,27 @@ class SignUpController : UIViewController {
 
 }
 
-extension SignUpController{
+//Buttons target functionality
+extension SignUpController {
     
     @objc func handleAddProfileImage(){
         print("here is add profile image")
+        
     }
     
     @objc func handleSignUpButton(){
-        print("here is sign up button")
+        guard let email = emailTextField.text, email.count > 0 else {return}
+        guard let password = passwordTextField.text, password.count > 0 else {return}
+        guard let username = usernameTextField.text, username.count > 0 else {return}
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if let err = error{
+                print("Failed to sign up user: ", err)
+                return
+            }
+            print("success to create user: " , user?.user.uid ?? "")
+            
+        }
     }
     
     @objc func handleHasAccountButton(){
