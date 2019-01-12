@@ -14,7 +14,7 @@ class MainTabBarController : UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        let homeController = UICollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let homeController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
         homeController.tabBarItem.image = UIImage(named: "home_unselected")
         homeController.tabBarItem.selectedImage = UIImage(named: "home_selected")
         let homeNavController = UINavigationController(rootViewController: homeController)
