@@ -111,11 +111,24 @@ class SignUpController : UIViewController {
 }
 
 //Buttons target functionality
-extension SignUpController {
+extension SignUpController : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @objc func handleAddProfileImage(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            addProfileImageButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            addProfileImageButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
         
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func handleTextInput(){
@@ -140,17 +153,39 @@ extension SignUpController {
                 return
             }
             
-            guard let uid = user?.user.uid  else {return}
-            let usernameValues = ["username" : username]
-            let values = [uid : usernameValues]
+            guard let image = self.addProfileImageButton.imageView?.image else {return}
+            guard let uploadData = image.jpegData(compressionQuality: 0.3) else {return}
             
-            Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
-                if let err = error{
-                    print("Failed to save data into firebase: ", err)
+            let filename = NSUUID().uuidString
+            let storageRef = Storage.storage().reference().child("profile_Image").child(filename)
+            storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                if let error = error{
+                    print("Failed to upload profile image:", error)
                     return
                 }
                 
-                print("Successful save data into firebase")
+            
+                storageRef.downloadURL(completion: { (downloadURL, error) in
+                    if let error = error{
+                        print("Failed to fetch downloadURL : ", error)
+                        return
+                    }
+                    guard let profileImageURL = downloadURL?.absoluteString else {return}
+                    
+                    print("Successfully uploaded profile image", profileImageURL)
+                    
+                    guard let uid = user?.user.uid  else {return}
+                    let dictionariesValues = ["username" : username, "profileImageURL" : profileImageURL]
+                    let values = [uid : dictionariesValues]
+                    Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
+                        if let err = error{
+                            print("Failed to save data into firebase: ", err)
+                            return
+                        }
+                        
+                        print("Successful save data into firebase")
+                    })
+                })
             })
         }
     }
