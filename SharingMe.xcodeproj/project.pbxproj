@@ -16,6 +16,8 @@
 		CFEF5FAF21E8F42D00D5B9E5 /* CustomConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FAE21E8F42D00D5B9E5 /* CustomConstraints.swift */; };
 		CFEF5FB121E8FB9F00D5B9E5 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FB021E8FB9F00D5B9E5 /* UIColor+Ext.swift */; };
 		CFEF5FB321EA693600D5B9E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFEF5FB221EA693600D5B9E5 /* GoogleService-Info.plist */; };
+		CFEF5FB521EA904600D5B9E5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FB421EA904600D5B9E5 /* MainTabBarController.swift */; };
+		CFEF5FB721EA989600D5B9E5 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FB621EA989600D5B9E5 /* UserProfileController.swift */; };
 		EB7D2E07EDC4BD46837C1C95 /* Pods_SharingMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D3DAB156A23955C8836F28 /* Pods_SharingMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		CFEF5FAE21E8F42D00D5B9E5 /* CustomConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomConstraints.swift; sourceTree = "<group>"; };
 		CFEF5FB021E8FB9F00D5B9E5 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		CFEF5FB221EA693600D5B9E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		CFEF5FB421EA904600D5B9E5 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CFEF5FB621EA989600D5B9E5 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 				CFEF5FA821E8F38400D5B9E5 /* Info.plist */,
 				CFEF5FA021E8F38400D5B9E5 /* SharingMe.xcdatamodeld */,
 				CFEF5FB021E8FB9F00D5B9E5 /* UIColor+Ext.swift */,
+				CFEF5FB421EA904600D5B9E5 /* MainTabBarController.swift */,
+				CFEF5FB621EA989600D5B9E5 /* UserProfileController.swift */,
 			);
 			path = SharingMe;
 			sourceTree = "<group>";
@@ -97,7 +103,6 @@
 				9F1E574DA306647077BA6AEF /* Pods-SharingMe.debug.xcconfig */,
 				1FD3D191E64FD5A1CFF66A6D /* Pods-SharingMe.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -230,7 +235,9 @@
 			files = (
 				CFEF5F9C21E8F38400D5B9E5 /* SignUpController.swift in Sources */,
 				CFEF5FAF21E8F42D00D5B9E5 /* CustomConstraints.swift in Sources */,
+				CFEF5FB521EA904600D5B9E5 /* MainTabBarController.swift in Sources */,
 				CFEF5FB121E8FB9F00D5B9E5 /* UIColor+Ext.swift in Sources */,
+				CFEF5FB721EA989600D5B9E5 /* UserProfileController.swift in Sources */,
 				CFEF5F9A21E8F38400D5B9E5 /* AppDelegate.swift in Sources */,
 				CFEF5FA221E8F38400D5B9E5 /* SharingMe.xcdatamodeld in Sources */,
 			);
