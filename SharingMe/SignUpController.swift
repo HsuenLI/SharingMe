@@ -62,17 +62,6 @@ class SignUpController : UIViewController {
         return button
     }()
     
-    @objc func handleTextInput(){
-        let isFormValidate = emailTextField.text?.count ?? 0 > 0 && passwordTextField.text?.count ?? 0 > 0 && usernameTextField.text?.count ?? 0 > 0
-        if isFormValidate{
-            signUpButton.isEnabled = true
-            signUpButton.backgroundColor = UIColor(red: 255, green: 137, blue: 35)
-        }else{
-            signUpButton.isEnabled = false
-            signUpButton.backgroundColor = UIColor(red: 255, green: 223, blue: 182)
-        }
-    }
-    
     let hasAccountButton : UIButton = {
         let button = UIButton(type: .system)
         let attributedText = NSMutableAttributedString(string: "Already have account?  ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor(white: 0, alpha: 0.3)])
@@ -125,8 +114,19 @@ class SignUpController : UIViewController {
 extension SignUpController {
     
     @objc func handleAddProfileImage(){
-        print("here is add profile image")
         
+        
+    }
+    
+    @objc func handleTextInput(){
+        let isFormValidate = emailTextField.text?.count ?? 0 > 0 && passwordTextField.text?.count ?? 0 > 0 && usernameTextField.text?.count ?? 0 > 0
+        if isFormValidate{
+            signUpButton.isEnabled = true
+            signUpButton.backgroundColor = UIColor(red: 255, green: 137, blue: 35)
+        }else{
+            signUpButton.isEnabled = false
+            signUpButton.backgroundColor = UIColor(red: 255, green: 223, blue: 182)
+        }
     }
     
     @objc func handleSignUpButton(){
@@ -139,8 +139,19 @@ extension SignUpController {
                 print("Failed to sign up user: ", err)
                 return
             }
-            print("success to create user: " , user?.user.uid ?? "")
             
+            guard let uid = user?.user.uid  else {return}
+            let usernameValues = ["username" : username]
+            let values = [uid : usernameValues]
+            
+            Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
+                if let err = error{
+                    print("Failed to save data into firebase: ", err)
+                    return
+                }
+                
+                print("Successful save data into firebase")
+            })
         }
     }
     
