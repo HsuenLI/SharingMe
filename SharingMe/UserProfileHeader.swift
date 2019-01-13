@@ -14,6 +14,7 @@ class UserProfileHeader : UICollectionReusableView {
     //Outlets
     var user : User?{
         didSet{
+            usernameLabel.text = user?.username
             setupFetchProfileImage()
         }
     }
@@ -165,7 +166,6 @@ extension UserProfileHeader{
     }
     
     fileprivate func setupFetchProfileImage(){
-        usernameLabel.text = user?.username
         guard let profileImageUrl = user?.profileImageURL else {return}
         guard let url = URL(string: profileImageUrl) else {return}
         URLSession.shared.dataTask(with: url) { (data, response, error) in

@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabBarController : UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        DispatchQueue.main.async {
+            if Auth.auth().currentUser == nil{
+                let loginController = LoginController()
+                self.present(loginController,animated: true)
+                return
+            }
+        }
+
         
         let homeController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
         homeController.tabBarItem.image = UIImage(named: "home_unselected")

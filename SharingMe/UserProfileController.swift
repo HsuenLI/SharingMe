@@ -22,7 +22,7 @@ class UserProfileController : UICollectionViewController {
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: self, action: #selector(handleSettingButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: self, action: #selector(handleGearButton))
         navigationController?.navigationBar.tintColor = UIColor.darkGray
         fetchUser()
     }
@@ -43,8 +43,20 @@ class UserProfileController : UICollectionViewController {
         }
     }
     
-    @objc func handleSettingButton(){
-        print("Here is setting")
+    @objc func handleGearButton(){
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let logoutAction = UIAlertAction(title: "Log Out", style: .default) { (action) in
+            do {
+                try Auth.auth().signOut()
+            }catch let error{
+                print("Failed to sign out from firebase:" , error)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(logoutAction)
+        alert.addAction(cancelAction)
+        present(alert,animated: true)
     }
     
 }
