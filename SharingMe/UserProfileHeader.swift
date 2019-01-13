@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class UserProfileHeader : UICollectionReusableView {
     
     //Outlets
+    var user : User?{
+        didSet{
+            setupFetchProfileImage()
+        }
+    }
+    
     let profileImageView : UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .blue
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -98,6 +104,8 @@ class UserProfileHeader : UICollectionReusableView {
         setupBottomToolBar()
         setupStatusBar()
         setupEditProfileButton()
+        
+        //setupFetchProfileImage()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -137,7 +145,7 @@ extension UserProfileHeader{
         addSubview(toolBarStackView)
         addSubview(bottomSeparatorView)
         
-        toolBarStackView.anchor(top: usernameLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        toolBarStackView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
         topSeparatorView.anchor(top: toolBarStackView.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
         
@@ -154,6 +162,21 @@ extension UserProfileHeader{
     fileprivate func setupEditProfileButton(){
         addSubview(editProfileButton)
         editProfileButton.anchor(top: postsLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 30, paddingBottom: 0, paddingRight: 12, width: 0, height: 34)
+    }
+    
+    fileprivate func setupFetchProfileImage(){
+        usernameLabel.text = user?.username
+        guard let profileImageUrl = user?.profileImageURL else {return}
+        guard let url = URL(string: profileImageUrl) else {return}
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let err = error{
+                print("Failed to load profile image url: ", err)
+            }
+            guard let imageData = data else {return}
+            DispatchQueue.main.async {
+                self.profileImageView.image = UIImage(data: imageData)
+            }
+            }.resume()
     }
 }
 
