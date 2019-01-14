@@ -87,7 +87,6 @@
 			children = (
 				CFEF5FAE21E8F42D00D5B9E5 /* CustomConstraints.swift */,
 				CFEF5F9921E8F38400D5B9E5 /* AppDelegate.swift */,
-				CFEF5F9B21E8F38400D5B9E5 /* SignUpController.swift */,
 				CFEF5F9D21E8F38400D5B9E5 /* Main.storyboard */,
 				CFEF5FA321E8F38400D5B9E5 /* Assets.xcassets */,
 				CFEF5FA521E8F38400D5B9E5 /* LaunchScreen.storyboard */,
@@ -98,6 +97,7 @@
 				CFEF5FB421EA904600D5B9E5 /* MainTabBarController.swift */,
 				CFEF5FB621EA989600D5B9E5 /* UserProfileController.swift */,
 				CFEF5FB821EA9BA700D5B9E5 /* UserProfileHeader.swift */,
+				CFEF5F9B21E8F38400D5B9E5 /* SignUpController.swift */,
 				CFEF5FBA21EB8A0E00D5B9E5 /* LoginController.swift */,
 			);
 			path = SharingMe;

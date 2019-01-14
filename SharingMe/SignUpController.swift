@@ -191,7 +191,7 @@ extension SignUpController : UIImagePickerControllerDelegate, UINavigationContro
     }
     
     @objc func handleHasAccountButton(){
-        print("here is has account button")
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
