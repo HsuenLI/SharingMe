@@ -48,6 +48,10 @@ class UserProfileController : UICollectionViewController {
         let logoutAction = UIAlertAction(title: "Log Out", style: .default) { (action) in
             do {
                 try Auth.auth().signOut()
+                
+                let loginController = LoginController()
+                let navController = UINavigationController(rootViewController: loginController)
+                self.present(navController,animated: true)
             }catch let error{
                 print("Failed to sign out from firebase:" , error)
             }

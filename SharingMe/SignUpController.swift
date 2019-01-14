@@ -183,7 +183,9 @@ extension SignUpController : UIImagePickerControllerDelegate, UINavigationContro
                             return
                         }
                         
-                        print("Successful save data into firebase")
+                        guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
+                        mainTabBarController.setupControllers()
+                        self.dismiss(animated: true, completion: nil)
                     })
                 })
             })

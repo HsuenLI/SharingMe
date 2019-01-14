@@ -20,6 +20,7 @@
 		CFEF5FB721EA989600D5B9E5 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FB621EA989600D5B9E5 /* UserProfileController.swift */; };
 		CFEF5FB921EA9BA700D5B9E5 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FB821EA9BA700D5B9E5 /* UserProfileHeader.swift */; };
 		CFEF5FBB21EB8A0E00D5B9E5 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FBA21EB8A0E00D5B9E5 /* LoginController.swift */; };
+		CFEF5FBD21ECBF3700D5B9E5 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FBC21ECBF3700D5B9E5 /* PhotoSelectorController.swift */; };
 		EB7D2E07EDC4BD46837C1C95 /* Pods_SharingMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D3DAB156A23955C8836F28 /* Pods_SharingMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		CFEF5FB621EA989600D5B9E5 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		CFEF5FB821EA9BA700D5B9E5 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		CFEF5FBA21EB8A0E00D5B9E5 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		CFEF5FBC21ECBF3700D5B9E5 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				CFEF5FB821EA9BA700D5B9E5 /* UserProfileHeader.swift */,
 				CFEF5F9B21E8F38400D5B9E5 /* SignUpController.swift */,
 				CFEF5FBA21EB8A0E00D5B9E5 /* LoginController.swift */,
+				CFEF5FBC21ECBF3700D5B9E5 /* PhotoSelectorController.swift */,
 			);
 			path = SharingMe;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				CFEF5F9A21E8F38400D5B9E5 /* AppDelegate.swift in Sources */,
 				CFEF5FA221E8F38400D5B9E5 /* SharingMe.xcdatamodeld in Sources */,
 				CFEF5FB921EA9BA700D5B9E5 /* UserProfileHeader.swift in Sources */,
+				CFEF5FBD21ECBF3700D5B9E5 /* PhotoSelectorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -127,6 +127,10 @@ extension LoginController{
                 return
             }
             print("Successfully sign in to firebase: ", user?.user.uid ?? "")
+            
+            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
+            mainTabBarController.setupControllers()
+            self.dismiss(animated: true, completion: nil)            
         })
 
     }
