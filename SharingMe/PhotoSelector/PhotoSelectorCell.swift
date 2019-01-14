@@ -1,5 +1,5 @@
 //
-//  PhotoSelectorHeader.swift
+//  PhotoSelectorCell.swift
 //  SharingMe
 //
 //  Created by Hsuen-Ju Li on 2019/1/14.
@@ -8,9 +8,8 @@
 
 import UIKit
 
-class PhotoSelectorHeader : UICollectionReusableView{
+class PhotoSelectorCell : UICollectionViewCell{
     
-    //Outlet
     let photoImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
