@@ -87,7 +87,10 @@
 		CFEF5F9821E8F38400D5B9E5 /* SharingMe */ = {
 			isa = PBXGroup;
 			children = (
-				CFEF5FAE21E8F42D00D5B9E5 /* CustomConstraints.swift */,
+				CFEF5FC121ECC14E00D5B9E5 /* UserProfile */,
+				CFEF5FC021ECC12B00D5B9E5 /* AccountSignUp&Logout */,
+				CFEF5FBF21ECC11800D5B9E5 /* Utlis */,
+				CFEF5FBE21ECC0FB00D5B9E5 /* PhotoSelector */,
 				CFEF5F9921E8F38400D5B9E5 /* AppDelegate.swift */,
 				CFEF5F9D21E8F38400D5B9E5 /* Main.storyboard */,
 				CFEF5FA321E8F38400D5B9E5 /* Assets.xcassets */,
@@ -95,15 +98,44 @@
 				CFEF5FB221EA693600D5B9E5 /* GoogleService-Info.plist */,
 				CFEF5FA821E8F38400D5B9E5 /* Info.plist */,
 				CFEF5FA021E8F38400D5B9E5 /* SharingMe.xcdatamodeld */,
-				CFEF5FB021E8FB9F00D5B9E5 /* UIColor+Ext.swift */,
 				CFEF5FB421EA904600D5B9E5 /* MainTabBarController.swift */,
-				CFEF5FB621EA989600D5B9E5 /* UserProfileController.swift */,
-				CFEF5FB821EA9BA700D5B9E5 /* UserProfileHeader.swift */,
-				CFEF5F9B21E8F38400D5B9E5 /* SignUpController.swift */,
-				CFEF5FBA21EB8A0E00D5B9E5 /* LoginController.swift */,
-				CFEF5FBC21ECBF3700D5B9E5 /* PhotoSelectorController.swift */,
 			);
 			path = SharingMe;
+			sourceTree = "<group>";
+		};
+		CFEF5FBE21ECC0FB00D5B9E5 /* PhotoSelector */ = {
+			isa = PBXGroup;
+			children = (
+				CFEF5FBC21ECBF3700D5B9E5 /* PhotoSelectorController.swift */,
+			);
+			path = PhotoSelector;
+			sourceTree = "<group>";
+		};
+		CFEF5FBF21ECC11800D5B9E5 /* Utlis */ = {
+			isa = PBXGroup;
+			children = (
+				CFEF5FAE21E8F42D00D5B9E5 /* CustomConstraints.swift */,
+				CFEF5FB021E8FB9F00D5B9E5 /* UIColor+Ext.swift */,
+			);
+			path = Utlis;
+			sourceTree = "<group>";
+		};
+		CFEF5FC021ECC12B00D5B9E5 /* AccountSignUp&Logout */ = {
+			isa = PBXGroup;
+			children = (
+				CFEF5FBA21EB8A0E00D5B9E5 /* LoginController.swift */,
+				CFEF5F9B21E8F38400D5B9E5 /* SignUpController.swift */,
+			);
+			path = "AccountSignUp&Logout";
+			sourceTree = "<group>";
+		};
+		CFEF5FC121ECC14E00D5B9E5 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				CFEF5FB821EA9BA700D5B9E5 /* UserProfileHeader.swift */,
+				CFEF5FB621EA989600D5B9E5 /* UserProfileController.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		E762508ED946D7FBA13234C1 /* Pods */ = {
