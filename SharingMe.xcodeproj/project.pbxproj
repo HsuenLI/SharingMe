@@ -95,7 +95,7 @@
 			children = (
 				CFEF5FC121ECC14E00D5B9E5 /* UserProfile */,
 				CFEF5FC021ECC12B00D5B9E5 /* AccountSignUp&Logout */,
-				CFEF5FBF21ECC11800D5B9E5 /* Utlis */,
+				CFEF5FBF21ECC11800D5B9E5 /* Utils */,
 				CFEF5FBE21ECC0FB00D5B9E5 /* PhotoSelector */,
 				CFEF5F9921E8F38400D5B9E5 /* AppDelegate.swift */,
 				CFEF5F9D21E8F38400D5B9E5 /* Main.storyboard */,
@@ -119,14 +119,14 @@
 			path = PhotoSelector;
 			sourceTree = "<group>";
 		};
-		CFEF5FBF21ECC11800D5B9E5 /* Utlis */ = {
+		CFEF5FBF21ECC11800D5B9E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				CFEF5FAE21E8F42D00D5B9E5 /* CustomConstraints.swift */,
 				CFEF5FB021E8FB9F00D5B9E5 /* UIColor+Ext.swift */,
 				CFEF5FC221ECC53300D5B9E5 /* UINavigationController+Ext.swift */,
 			);
-			path = Utlis;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		CFEF5FC021ECC12B00D5B9E5 /* AccountSignUp&Logout */ = {
