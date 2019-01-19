@@ -24,6 +24,7 @@
 		CFEF5FC321ECC53300D5B9E5 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FC221ECC53300D5B9E5 /* UINavigationController+Ext.swift */; };
 		CFEF5FC521ECCF7600D5B9E5 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FC421ECCF7600D5B9E5 /* PhotoSelectorHeader.swift */; };
 		CFEF5FC721ECD06E00D5B9E5 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FC621ECD06E00D5B9E5 /* PhotoSelectorCell.swift */; };
+		CFEF5FF421F328C300D5B9E5 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FF321F328C300D5B9E5 /* SharePhotoController.swift */; };
 		EB7D2E07EDC4BD46837C1C95 /* Pods_SharingMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D3DAB156A23955C8836F28 /* Pods_SharingMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		CFEF5FC221ECC53300D5B9E5 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		CFEF5FC421ECCF7600D5B9E5 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		CFEF5FC621ECD06E00D5B9E5 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
+		CFEF5FF321F328C300D5B9E5 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				CFEF5FBC21ECBF3700D5B9E5 /* PhotoSelectorController.swift */,
 				CFEF5FC421ECCF7600D5B9E5 /* PhotoSelectorHeader.swift */,
 				CFEF5FC621ECD06E00D5B9E5 /* PhotoSelectorCell.swift */,
+				CFEF5FF321F328C300D5B9E5 /* SharePhotoController.swift */,
 			);
 			path = PhotoSelector;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				CFEF5FC321ECC53300D5B9E5 /* UINavigationController+Ext.swift in Sources */,
 				CFEF5F9C21E8F38400D5B9E5 /* SignUpController.swift in Sources */,
 				CFEF5FAF21E8F42D00D5B9E5 /* CustomConstraints.swift in Sources */,
+				CFEF5FF421F328C300D5B9E5 /* SharePhotoController.swift in Sources */,
 				CFEF5FB521EA904600D5B9E5 /* MainTabBarController.swift in Sources */,
 				CFEF5FBB21EB8A0E00D5B9E5 /* LoginController.swift in Sources */,
 				CFEF5FB121E8FB9F00D5B9E5 /* UIColor+Ext.swift in Sources */,

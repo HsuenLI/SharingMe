@@ -17,6 +17,7 @@ class PhotoSelectorController : UICollectionViewController {
     var photos = [UIImage]()
     var selectedImage : UIImage?
     var assets = [PHAsset]()
+    var header : PhotoSelectorHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +28,14 @@ class PhotoSelectorController : UICollectionViewController {
         
         fetchPhotos()
     }
+}
+
+//Handle fetch photo
+extension PhotoSelectorController{
     
     fileprivate func assestFetchOptions() -> PHFetchOptions{
         let fetchOptions = PHFetchOptions()
-        fetchOptions.fetchLimit = 10
+        fetchOptions.fetchLimit = 30
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchOptions.sortDescriptors = [sortDescriptor]
         return fetchOptions
@@ -38,7 +43,7 @@ class PhotoSelectorController : UICollectionViewController {
     
     fileprivate func fetchPhotos(){
         let allPhotos = PHAsset.fetchAssets(with: .image, options: assestFetchOptions())
-
+        
         DispatchQueue.global(qos: .background).async {
             allPhotos.enumerateObjects { (asset, count, stop) in
                 
@@ -87,7 +92,9 @@ extension PhotoSelectorController{
     }
     
     @objc func handleNextButton(){
-        
+        let sharePhotoController = SharePhotoController()
+        navigationController?.pushViewController(sharePhotoController, animated: true)
+        sharePhotoController.selectedImage = header?.photoImageView.image
     }
 }
 
@@ -95,6 +102,7 @@ extension PhotoSelectorController : UICollectionViewDelegateFlowLayout{
     //Header
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
+        self.header = header
         
         if let selectedImage = selectedImage{
             if let index = self.photos.index(of: selectedImage){
@@ -103,6 +111,7 @@ extension PhotoSelectorController : UICollectionViewDelegateFlowLayout{
                 let imageManager = PHImageManager.default()
                 imageManager.requestImage(for: selectedAsset, targetSize: targerSize, contentMode: .default, options: nil) { (image, info) in
                     header.photoImageView.image = image
+                    
                 }
             }
         }
@@ -145,6 +154,10 @@ extension PhotoSelectorController : UICollectionViewDelegateFlowLayout{
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedImage = photos[indexPath.item]
         collectionView.reloadData()
+        
+        //Selected and back to top
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
 }
 
