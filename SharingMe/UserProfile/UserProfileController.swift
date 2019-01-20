@@ -15,16 +15,19 @@ class UserProfileController : UICollectionViewController {
     let cellId = "cellId"
     let headerId = "headerId"
     var user : User?
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: self, action: #selector(handleGearButton))
         navigationController?.navigationBar.tintColor = UIColor.darkGray
         fetchUser()
+        
+        fetchPosts()
     }
     
     fileprivate func fetchUser(){
@@ -40,6 +43,27 @@ class UserProfileController : UICollectionViewController {
             self.collectionView.reloadData()
         }) { (error) in
             print("Failed to fetch user: ", error)
+        }
+    }
+    
+    fileprivate func fetchPosts(){
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+       
+        Database.database().reference().child("posts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dictionaries = snapshot.value as? [String : Any] else {return}
+            
+            dictionaries.forEach({ (key,value) in
+                guard let dictionary = value as? [String : Any] else {return}
+                //let imageUrl = dictionary["imageURL"] as? String
+                let post = Post(dictionary: dictionary)
+                //print(post.imageUrl)
+                self.posts.append(post)
+            })
+            
+            self.collectionView.reloadData()
+            
+        }) { (error) in
+            print("Failed to fetch posts from database: ", error)
         }
     }
     
@@ -82,12 +106,12 @@ extension UserProfileController : UICollectionViewDelegateFlowLayout{
     
     //Collection view cell
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .orange
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+        cell.post = posts[indexPath.item]
         return cell
     }
     
