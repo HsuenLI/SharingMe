@@ -19,6 +19,11 @@ class UserProfilePhotoCell : UICollectionViewCell{
                     print("Failed to fetch post image:", error)
                     return
                 }
+                
+                if url.absoluteString != self.post?.imageUrl{
+                    return
+                }
+                
                 DispatchQueue.main.async{
                     guard let imageData = data else {return}
                     self.photoImageView.image = UIImage(data: imageData)
