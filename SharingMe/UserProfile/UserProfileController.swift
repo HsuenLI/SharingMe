@@ -27,8 +27,6 @@ class UserProfileController : UICollectionViewController {
         navigationController?.navigationBar.tintColor = UIColor.darkGray
         fetchUser()
         
-        //fetchPosts()
-        
         fetchOrderedPosts()
     }
     
@@ -62,26 +60,6 @@ class UserProfileController : UICollectionViewController {
         }
     }
     
-    fileprivate func fetchPosts(){
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-       
-        Database.database().reference().child("posts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let dictionaries = snapshot.value as? [String : Any] else {return}
-            
-            dictionaries.forEach({ (key,value) in
-                guard let dictionary = value as? [String : Any] else {return}
-                //let imageUrl = dictionary["imageURL"] as? String
-                let post = Post(dictionary: dictionary)
-                //print(post.imageUrl)
-                self.posts.append(post)
-            })
-            
-            self.collectionView.reloadData()
-            
-        }) { (error) in
-            print("Failed to fetch posts from database: ", error)
-        }
-    }
     
     @objc func handleGearButton(){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

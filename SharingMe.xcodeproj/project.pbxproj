@@ -28,6 +28,8 @@
 		CFEF604A21F4CADD00D5B9E5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF604921F4CADD00D5B9E5 /* Post.swift */; };
 		CFEF604C21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF604B21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift */; };
 		CFEF604E21F5C1A500D5B9E5 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF604D21F5C1A500D5B9E5 /* CustomImageView.swift */; };
+		CFEF605121F716F100D5B9E5 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF605021F716F100D5B9E5 /* HomeController.swift */; };
+		CFEF605321F7187400D5B9E5 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF605221F7187400D5B9E5 /* HomeCell.swift */; };
 		EB7D2E07EDC4BD46837C1C95 /* Pods_SharingMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D3DAB156A23955C8836F28 /* Pods_SharingMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		CFEF604921F4CADD00D5B9E5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		CFEF604B21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
 		CFEF604D21F5C1A500D5B9E5 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		CFEF605021F716F100D5B9E5 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		CFEF605221F7187400D5B9E5 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +107,11 @@
 			children = (
 				CFEF604821F4CAD000D5B9E5 /* Model */,
 				CFEF5FBF21ECC11800D5B9E5 /* Utils */,
+				CFEF604F21F716CD00D5B9E5 /* HomeFeed */,
 				CFEF5FC121ECC14E00D5B9E5 /* UserProfile */,
 				CFEF5FC021ECC12B00D5B9E5 /* AccountSignUp&Logout */,
 				CFEF5FBE21ECC0FB00D5B9E5 /* PhotoSelector */,
+				CFEF5FB421EA904600D5B9E5 /* MainTabBarController.swift */,
 				CFEF5F9921E8F38400D5B9E5 /* AppDelegate.swift */,
 				CFEF5F9D21E8F38400D5B9E5 /* Main.storyboard */,
 				CFEF5FA321E8F38400D5B9E5 /* Assets.xcassets */,
@@ -113,7 +119,6 @@
 				CFEF5FB221EA693600D5B9E5 /* GoogleService-Info.plist */,
 				CFEF5FA821E8F38400D5B9E5 /* Info.plist */,
 				CFEF5FA021E8F38400D5B9E5 /* SharingMe.xcdatamodeld */,
-				CFEF5FB421EA904600D5B9E5 /* MainTabBarController.swift */,
 			);
 			path = SharingMe;
 			sourceTree = "<group>";
@@ -165,6 +170,15 @@
 				CFEF604921F4CADD00D5B9E5 /* Post.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CFEF604F21F716CD00D5B9E5 /* HomeFeed */ = {
+			isa = PBXGroup;
+			children = (
+				CFEF605021F716F100D5B9E5 /* HomeController.swift */,
+				CFEF605221F7187400D5B9E5 /* HomeCell.swift */,
+			);
+			path = HomeFeed;
 			sourceTree = "<group>";
 		};
 		E762508ED946D7FBA13234C1 /* Pods */ = {
@@ -305,6 +319,7 @@
 			files = (
 				CFEF5FC521ECCF7600D5B9E5 /* PhotoSelectorHeader.swift in Sources */,
 				CFEF5FC321ECC53300D5B9E5 /* UINavigationController+Ext.swift in Sources */,
+				CFEF605321F7187400D5B9E5 /* HomeCell.swift in Sources */,
 				CFEF5F9C21E8F38400D5B9E5 /* SignUpController.swift in Sources */,
 				CFEF5FAF21E8F42D00D5B9E5 /* CustomConstraints.swift in Sources */,
 				CFEF5FF421F328C300D5B9E5 /* SharePhotoController.swift in Sources */,
@@ -317,6 +332,7 @@
 				CFEF5FC721ECD06E00D5B9E5 /* PhotoSelectorCell.swift in Sources */,
 				CFEF5FA221E8F38400D5B9E5 /* SharingMe.xcdatamodeld in Sources */,
 				CFEF5FB921EA9BA700D5B9E5 /* UserProfileHeader.swift in Sources */,
+				CFEF605121F716F100D5B9E5 /* HomeController.swift in Sources */,
 				CFEF5FBD21ECBF3700D5B9E5 /* PhotoSelectorController.swift in Sources */,
 				CFEF604E21F5C1A500D5B9E5 /* CustomImageView.swift in Sources */,
 				CFEF604C21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift in Sources */,
