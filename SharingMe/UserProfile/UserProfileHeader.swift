@@ -15,12 +15,13 @@ class UserProfileHeader : UICollectionReusableView {
     var user : User?{
         didSet{
             usernameLabel.text = user?.username
-            setupFetchProfileImage()
+            guard let profileImageUrl = user?.profileImageURL else {return}
+            profileImageView.loadImage(urlString: profileImageUrl)
         }
     }
     
-    let profileImageView : UIImageView = {
-        let imageView = UIImageView()
+    let profileImageView : CustomImageView = {
+        let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -163,20 +164,6 @@ extension UserProfileHeader{
     fileprivate func setupEditProfileButton(){
         addSubview(editProfileButton)
         editProfileButton.anchor(top: postsLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 2, paddingLeft: 30, paddingBottom: 0, paddingRight: 12, width: 0, height: 34)
-    }
-    
-    fileprivate func setupFetchProfileImage(){
-        guard let profileImageUrl = user?.profileImageURL else {return}
-        guard let url = URL(string: profileImageUrl) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let err = error{
-                print("Failed to load profile image url: ", err)
-            }
-            guard let imageData = data else {return}
-            DispatchQueue.main.async {
-                self.profileImageView.image = UIImage(data: imageData)
-            }
-            }.resume()
     }
 }
 

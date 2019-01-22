@@ -27,6 +27,7 @@
 		CFEF5FF421F328C300D5B9E5 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5FF321F328C300D5B9E5 /* SharePhotoController.swift */; };
 		CFEF604A21F4CADD00D5B9E5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF604921F4CADD00D5B9E5 /* Post.swift */; };
 		CFEF604C21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF604B21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift */; };
+		CFEF604E21F5C1A500D5B9E5 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF604D21F5C1A500D5B9E5 /* CustomImageView.swift */; };
 		EB7D2E07EDC4BD46837C1C95 /* Pods_SharingMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D3DAB156A23955C8836F28 /* Pods_SharingMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		CFEF5FF321F328C300D5B9E5 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 		CFEF604921F4CADD00D5B9E5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		CFEF604B21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
+		CFEF604D21F5C1A500D5B9E5 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				CFEF5FAE21E8F42D00D5B9E5 /* CustomConstraints.swift */,
 				CFEF5FB021E8FB9F00D5B9E5 /* UIColor+Ext.swift */,
 				CFEF5FC221ECC53300D5B9E5 /* UINavigationController+Ext.swift */,
+				CFEF604D21F5C1A500D5B9E5 /* CustomImageView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				CFEF5FA221E8F38400D5B9E5 /* SharingMe.xcdatamodeld in Sources */,
 				CFEF5FB921EA9BA700D5B9E5 /* UserProfileHeader.swift in Sources */,
 				CFEF5FBD21ECBF3700D5B9E5 /* PhotoSelectorController.swift in Sources */,
+				CFEF604E21F5C1A500D5B9E5 /* CustomImageView.swift in Sources */,
 				CFEF604C21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
