@@ -31,38 +31,47 @@ class HomeController : UICollectionViewController {
     fileprivate func fetchPosts(){
         guard let uid = Auth.auth().currentUser?.uid else {return}
     
-        let postRef = Database.database().reference().child("posts").child(uid)
-        
-        postRef.observeSingleEvent(of: .value, with: { (snapshot) in
-
-            guard let dictionaries = snapshot.value as? [String : Any] else {return}
+        let userRef = Database.database().reference().child("users").child(uid)
+        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let userDictionary = snapshot.value as? [String : Any] else {return}
+            let user = User(dictionary: userDictionary)
             
-            var snapshotKeys = [String]()
-            for key in dictionaries.keys{
-                snapshotKeys.append(key)
-            }
-            snapshotKeys.sort()
-
-//            dictionaries.forEach({ (key,value) in
-//                guard let dictionary = value as? [String : Any] else {return}
-//                //let imageUrl = dictionary["imageURL"] as? String
-//                let post = Post(dictionary: dictionary)
-//                //print(post.imageUrl)
-//                self.posts.append(post)
-//            })
-            for snapshotKey in snapshotKeys{
-                print("snapshotKey: \(snapshotKey)")
-                guard let dictionary = dictionaries[snapshotKey] as? [String : Any] else {return}
-                //let imageUrl = dictionary["imageURL"] as? String
-                let post = Post(dictionary: dictionary)
-                //print(post.imageUrl)
-                self.posts.insert(post, at: 0)
-            }
             
-            self.collectionView.reloadData()
+            let postRef = Database.database().reference().child("posts").child(uid)
+            
+            postRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                guard let dictionaries = snapshot.value as? [String : Any] else {return}
+                
+                var snapshotKeys = [String]()
+                for key in dictionaries.keys{
+                    snapshotKeys.append(key)
+                }
+                snapshotKeys.sort()
+                
+                //            dictionaries.forEach({ (key,value) in
+                //                guard let dictionary = value as? [String : Any] else {return}
+                //                //let imageUrl = dictionary["imageURL"] as? String
+                //                let post = Post(dictionary: dictionary)
+                //                //print(post.imageUrl)
+                //                self.posts.append(post)
+                //            })
+                for snapshotKey in snapshotKeys{
+                    print("snapshotKey: \(snapshotKey)")
+                    guard let dictionary = dictionaries[snapshotKey] as? [String : Any] else {return}
+                    let post = Post(user: user, dictionary: dictionary)
+                    
+                    self.posts.insert(post, at: 0)
+                }
+                
+                self.collectionView.reloadData()
+                
+            }) { (error) in
+                print("Failed to fetch posts from database: ", error)
+            }
             
         }) { (error) in
-            print("Failed to fetch posts from database: ", error)
+            print("Failed to fetch post's user data from database: ", error)
         }
     }
 }
