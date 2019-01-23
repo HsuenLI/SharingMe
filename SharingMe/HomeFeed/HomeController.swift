@@ -31,15 +31,8 @@ class HomeController : UICollectionViewController {
     fileprivate func fetchPosts(){
         guard let uid = Auth.auth().currentUser?.uid else {return}
     
-        let userRef = Database.database().reference().child("users").child(uid)
-        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let userDictionary = snapshot.value as? [String : Any] else {return}
-            let user = User(uid: uid, dictionary: userDictionary)
-            
-            self.fetchPostsWithUser(user : user)
-            
-        }) { (error) in
-            print("Failed to fetch post's user data from database: ", error)
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.fetchPostsWithUser(user: user)
         }
     }
     

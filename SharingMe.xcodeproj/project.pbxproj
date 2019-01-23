@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF93891C21F8F6DE00090DAF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93891B21F8F6DE00090DAF /* User.swift */; };
+		CF93891E21F8FF7000090DAF /* Firebase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */; };
 		CFEF5F9A21E8F38400D5B9E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5F9921E8F38400D5B9E5 /* AppDelegate.swift */; };
 		CFEF5F9C21E8F38400D5B9E5 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5F9B21E8F38400D5B9E5 /* SignUpController.swift */; };
 		CFEF5F9F21E8F38400D5B9E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEF5F9D21E8F38400D5B9E5 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 		9F1E574DA306647077BA6AEF /* Pods-SharingMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharingMe.debug.xcconfig"; path = "Target Support Files/Pods-SharingMe/Pods-SharingMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B2D3DAB156A23955C8836F28 /* Pods_SharingMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharingMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF93891B21F8F6DE00090DAF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Ext.swift"; sourceTree = "<group>"; };
 		CFEF5F9621E8F38400D5B9E5 /* SharingMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharingMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFEF5F9921E8F38400D5B9E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFEF5F9B21E8F38400D5B9E5 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				CFEF5FB021E8FB9F00D5B9E5 /* UIColor+Ext.swift */,
 				CFEF5FC221ECC53300D5B9E5 /* UINavigationController+Ext.swift */,
 				CFEF604D21F5C1A500D5B9E5 /* CustomImageView.swift */,
+				CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				CFEF5FB921EA9BA700D5B9E5 /* UserProfileHeader.swift in Sources */,
 				CFEF605121F716F100D5B9E5 /* HomeController.swift in Sources */,
 				CFEF5FBD21ECBF3700D5B9E5 /* PhotoSelectorController.swift in Sources */,
+				CF93891E21F8FF7000090DAF /* Firebase+Ext.swift in Sources */,
 				CFEF604E21F5C1A500D5B9E5 /* CustomImageView.swift in Sources */,
 				CFEF604C21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift in Sources */,
 			);
