@@ -28,7 +28,7 @@ class UserProfileController : UICollectionViewController {
         navigationController?.navigationBar.tintColor = UIColor.darkGray
         fetchUser()
         
-        fetchOrderedPosts()
+        //fetchOrderedPosts()
     }
     
     fileprivate func fetchUser(){
@@ -40,11 +40,13 @@ class UserProfileController : UICollectionViewController {
             self.user = user
             self.navigationItem.title = self.user?.username
             self.collectionView.reloadData()
+            
+            self.fetchOrderedPosts()
         }
     }
     
     fileprivate func fetchOrderedPosts(){
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let uid = self.user?.uid else {return}
         let ref = Database.database().reference().child("posts").child(uid)
         
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
