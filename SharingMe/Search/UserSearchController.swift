@@ -28,12 +28,18 @@ class UserSearchController : UICollectionViewController, UISearchBarDelegate{
         collectionView.backgroundColor = .white
         collectionView.register(UserSearchCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode = .onDrag
         
         navigationController?.navigationBar.addSubview(searhBar)
         guard let navigationBar = navigationController?.navigationBar else {return}
         searhBar.anchor(top: navigationBar.topAnchor, left: navigationBar.leftAnchor, bottom: navigationBar.bottomAnchor, right: navigationBar.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
         fetchUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searhBar.isHidden = false
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -46,8 +52,6 @@ class UserSearchController : UICollectionViewController, UISearchBarDelegate{
             }
         }
         
-
-        
         collectionView.reloadData()
     }
     
@@ -56,6 +60,10 @@ class UserSearchController : UICollectionViewController, UISearchBarDelegate{
         userRef.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictionaries = snapshot.value as? [String : Any] else {return}
             dictionaries.forEach({ (uid,value) in
+                
+                if uid == Auth.auth().currentUser?.uid{
+                    return
+                }
                 guard let dictionary = value as? [String : Any] else {return}
                 
                 let user = User(uid: uid, dictionary: dictionary)
@@ -88,5 +96,15 @@ extension UserSearchController : UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 66)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let user = filterUsers[indexPath.item]
+        
+        searhBar.isHidden = true
+        searhBar.resignFirstResponder()
+        let userProfileController = UserProfileController(collectionViewLayout : UICollectionViewFlowLayout())
+        userProfileController.userId = user.uid
+        navigationController?.pushViewController(userProfileController, animated: true)
     }
 }

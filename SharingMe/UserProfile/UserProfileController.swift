@@ -16,6 +16,7 @@ class UserProfileController : UICollectionViewController {
     let headerId = "headerId"
     var user : User?
     var posts = [Post]()
+    var userId : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +32,13 @@ class UserProfileController : UICollectionViewController {
     }
     
     fileprivate func fetchUser(){
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        let uid = userId ?? Auth.auth().currentUser?.uid ?? ""
+        
+        //guard let uid = Auth.auth().currentUser?.uid else {return}
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.user = user
-            self.navigationItem.title = user.username
+            self.navigationItem.title = self.user?.username
             self.collectionView.reloadData()
         }
     }
