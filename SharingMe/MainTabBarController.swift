@@ -44,7 +44,7 @@ class MainTabBarController : UITabBarController, UITabBarControllerDelegate {
         let homeController = HomeController(collectionViewLayout: UICollectionViewFlowLayout())
         let homeNavController = customControllers(viewController: nil, collectionView: homeController, selectedImage: "home_selected", unselectedImage: "home_unselected")
         
-        let searchController = UICollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let searchController = UserSearchController(collectionViewLayout: UICollectionViewFlowLayout())
         let searchNavController = customControllers(viewController: nil, collectionView: searchController, selectedImage: "search_selected", unselectedImage: "search_unselected")
         
         let plusController = UIViewController()
