@@ -7,9 +7,17 @@
 //
 
 import UIKit
-import Firebase
 
 class UserSearchCell : UICollectionViewCell {
+    
+    var user : User?{
+        didSet{
+            guard let profileImageUrl = user?.profileImageURL else {return}
+            profileImageView.loadImage(urlString: profileImageUrl)
+            
+            usernameLabel.text = user?.username
+        }
+    }
     
     let profileImageView : CustomImageView = {
         let iv = CustomImageView()
