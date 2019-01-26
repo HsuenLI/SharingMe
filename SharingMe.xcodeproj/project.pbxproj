@@ -11,6 +11,7 @@
 		CF93891E21F8FF7000090DAF /* Firebase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */; };
 		CF93892121FA1AAE00090DAF /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93892021FA1AAE00090DAF /* UserSearchController.swift */; };
 		CF93892321FA1E9400090DAF /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93892221FA1E9400090DAF /* UserSearchCell.swift */; };
+		CF93894C21FC923F00090DAF /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93894B21FC923F00090DAF /* Date+Ext.swift */; };
 		CFEF5F9A21E8F38400D5B9E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5F9921E8F38400D5B9E5 /* AppDelegate.swift */; };
 		CFEF5F9C21E8F38400D5B9E5 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF5F9B21E8F38400D5B9E5 /* SignUpController.swift */; };
 		CFEF5F9F21E8F38400D5B9E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEF5F9D21E8F38400D5B9E5 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Ext.swift"; sourceTree = "<group>"; };
 		CF93892021FA1AAE00090DAF /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		CF93892221FA1E9400090DAF /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
+		CF93894B21FC923F00090DAF /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		CFEF5F9621E8F38400D5B9E5 /* SharingMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharingMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFEF5F9921E8F38400D5B9E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFEF5F9B21E8F38400D5B9E5 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				CFEF5FC221ECC53300D5B9E5 /* UINavigationController+Ext.swift */,
 				CFEF604D21F5C1A500D5B9E5 /* CustomImageView.swift */,
 				CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */,
+				CF93894B21FC923F00090DAF /* Date+Ext.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				CFEF5FC521ECCF7600D5B9E5 /* PhotoSelectorHeader.swift in Sources */,
 				CFEF5FC321ECC53300D5B9E5 /* UINavigationController+Ext.swift in Sources */,
 				CFEF605321F7187400D5B9E5 /* HomeCell.swift in Sources */,
+				CF93894C21FC923F00090DAF /* Date+Ext.swift in Sources */,
 				CFEF5F9C21E8F38400D5B9E5 /* SignUpController.swift in Sources */,
 				CFEF5FAF21E8F42D00D5B9E5 /* CustomConstraints.swift in Sources */,
 				CFEF5FF421F328C300D5B9E5 /* SharePhotoController.swift in Sources */,
