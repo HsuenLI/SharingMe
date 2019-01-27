@@ -20,8 +20,20 @@ class HomeController : UICollectionViewController {
         setupNavigationItems()
         collectionView.register(HomeCell.self, forCellWithReuseIdentifier: cellId)
         
-        fetchPosts()
+        fetchAllPosts()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    @objc func handleRefresh(){
+        posts.removeAll()
+        fetchAllPosts()
+    }
+    
+    fileprivate func fetchAllPosts() {
+        fetchPosts()
         fetchFollowingUserIds()
     }
     
@@ -29,6 +41,7 @@ class HomeController : UICollectionViewController {
         guard let uid = Auth.auth().currentUser?.uid else  {return}
         let ref = Database.database().reference().child("following").child(uid)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.collectionView.refreshControl?.endRefreshing()
             guard let userIdsDictionary = snapshot.value as? [String : Any] else {return}
             
             userIdsDictionary.forEach({ (key, value) in
@@ -94,7 +107,10 @@ extension HomeController : UICollectionViewDelegateFlowLayout{
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomeCell
-        cell.post = posts[indexPath.item]
+        
+        if indexPath.item < posts.count{
+            cell.post = posts[indexPath.item]
+        }
         return cell
     }
     
