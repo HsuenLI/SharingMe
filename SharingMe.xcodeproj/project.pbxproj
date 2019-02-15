@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1D5D0B2216EB20004FCF9B /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D5D0A2216EB20004FCF9B /* CameraController.swift */; };
 		CF93891C21F8F6DE00090DAF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93891B21F8F6DE00090DAF /* User.swift */; };
 		CF93891E21F8FF7000090DAF /* Firebase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */; };
 		CF93892121FA1AAE00090DAF /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93892021FA1AAE00090DAF /* UserSearchController.swift */; };
@@ -42,6 +43,7 @@
 		1FD3D191E64FD5A1CFF66A6D /* Pods-SharingMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharingMe.release.xcconfig"; path = "Target Support Files/Pods-SharingMe/Pods-SharingMe.release.xcconfig"; sourceTree = "<group>"; };
 		9F1E574DA306647077BA6AEF /* Pods-SharingMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharingMe.debug.xcconfig"; path = "Target Support Files/Pods-SharingMe/Pods-SharingMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B2D3DAB156A23955C8836F28 /* Pods_SharingMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharingMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1D5D0A2216EB20004FCF9B /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		CF93891B21F8F6DE00090DAF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Ext.swift"; sourceTree = "<group>"; };
 		CF93892021FA1AAE00090DAF /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CF1D5D0C2216EB97004FCF9B /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				CF1D5D0A2216EB20004FCF9B /* CameraController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		CF93891F21FA1A9100090DAF /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +134,7 @@
 		CFEF5F9821E8F38400D5B9E5 /* SharingMe */ = {
 			isa = PBXGroup;
 			children = (
+				CF1D5D0C2216EB97004FCF9B /* Camera */,
 				CFEF604821F4CAD000D5B9E5 /* Model */,
 				CFEF5FBF21ECC11800D5B9E5 /* Utils */,
 				CF93891F21FA1A9100090DAF /* Search */,
@@ -344,6 +355,7 @@
 				CFEF5FC321ECC53300D5B9E5 /* UINavigationController+Ext.swift in Sources */,
 				CFEF605321F7187400D5B9E5 /* HomeCell.swift in Sources */,
 				CF93894C21FC923F00090DAF /* Date+Ext.swift in Sources */,
+				CF1D5D0B2216EB20004FCF9B /* CameraController.swift in Sources */,
 				CFEF5F9C21E8F38400D5B9E5 /* SignUpController.swift in Sources */,
 				CFEF5FAF21E8F42D00D5B9E5 /* CustomConstraints.swift in Sources */,
 				CFEF5FF421F328C300D5B9E5 /* SharePhotoController.swift in Sources */,

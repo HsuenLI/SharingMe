@@ -63,6 +63,13 @@ class HomeController : UICollectionViewController {
     fileprivate func setupNavigationItems(){
         let navigationTitleView = UIImageView(image: UIImage(named: "logo_black"))
         navigationItem.titleView = navigationTitleView
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "camera3")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
+    }
+    
+    @objc func handleCamera(){
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
     }
     
     fileprivate func fetchPosts(){
