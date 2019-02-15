@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraController : UIViewController{
+class CameraController : UIViewController, AVCapturePhotoCaptureDelegate{
     
     let dismissButton : UIButton = {
         let button = UIButton(type: .system)
@@ -29,9 +29,8 @@ class CameraController : UIViewController{
         return button
     }()
     
-    @objc func handleCapturePhoto(){
-        print("capture photo")
-    }
+    let output = AVCapturePhotoOutput()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +45,34 @@ class CameraController : UIViewController{
         captureButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 24, paddingRight: 0, width: 80, height: 80)
         captureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
+    
+    @objc func handleCapturePhoto(){
+        print("capture photo")
+        
+        let settings = AVCapturePhotoSettings()
+        output.capturePhoto(with: settings, delegate: self)
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let error = error{
+            print("Failed to processing photo: ", error)
+            return
+        }
+        
+        guard let imageData = photo.fileDataRepresentation() else {return}
+        
+        let previewImage = UIImage(data: imageData)
+        
+        let previewImageView = UIImageView(image: previewImage)
+        
+        view.addSubview(previewImageView)
+        
+        previewImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        print("Finish processing photo sample buffer...")
+        
+    }
+    
     fileprivate func setupCaptureSession(){
         let captureSession = AVCaptureSession()
 
@@ -62,7 +89,6 @@ class CameraController : UIViewController{
         }
 
         //2.setup outputs
-        let output = AVCapturePhotoOutput()
         if captureSession.canAddOutput(output){
             captureSession.addOutput(output)
         }
