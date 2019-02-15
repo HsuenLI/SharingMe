@@ -16,6 +16,8 @@ class HomeController : UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateNotificationName, object: nil)
         collectionView.backgroundColor = .white
         setupNavigationItems()
         collectionView.register(HomeCell.self, forCellWithReuseIdentifier: cellId)
@@ -25,6 +27,10 @@ class HomeController : UICollectionViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView.refreshControl = refreshControl
+    }
+    
+    @objc func handleUpdateFeed(){
+        handleRefresh()
     }
     
     @objc func handleRefresh(){
