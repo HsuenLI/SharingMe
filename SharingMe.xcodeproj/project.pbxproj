@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CF1D5D0B2216EB20004FCF9B /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D5D0A2216EB20004FCF9B /* CameraController.swift */; };
 		CF6937C02228F45700F5780B /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6937BF2228F45700F5780B /* CommentsController.swift */; };
+		CF6937C22229975A00F5780B /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6937C12229975A00F5780B /* CommentsCell.swift */; };
+		CF6937C422299BDA00F5780B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6937C322299BDA00F5780B /* Comment.swift */; };
 		CF93891C21F8F6DE00090DAF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93891B21F8F6DE00090DAF /* User.swift */; };
 		CF93891E21F8FF7000090DAF /* Firebase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */; };
 		CF93892121FA1AAE00090DAF /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93892021FA1AAE00090DAF /* UserSearchController.swift */; };
@@ -49,6 +51,8 @@
 		B2D3DAB156A23955C8836F28 /* Pods_SharingMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharingMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1D5D0A2216EB20004FCF9B /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		CF6937BF2228F45700F5780B /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
+		CF6937C12229975A00F5780B /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
+		CF6937C322299BDA00F5780B /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		CF93891B21F8F6DE00090DAF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Ext.swift"; sourceTree = "<group>"; };
 		CF93892021FA1AAE00090DAF /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 			children = (
 				CFEF604921F4CADD00D5B9E5 /* Post.swift */,
 				CF93891B21F8F6DE00090DAF /* User.swift */,
+				CF6937C322299BDA00F5780B /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				CFEF605021F716F100D5B9E5 /* HomeController.swift */,
 				CFEF605221F7187400D5B9E5 /* HomeCell.swift */,
 				CF6937BF2228F45700F5780B /* CommentsController.swift */,
+				CF6937C12229975A00F5780B /* CommentsCell.swift */,
 			);
 			path = HomeFeed;
 			sourceTree = "<group>";
@@ -364,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFEF5FC521ECCF7600D5B9E5 /* PhotoSelectorHeader.swift in Sources */,
+				CF6937C22229975A00F5780B /* CommentsCell.swift in Sources */,
 				CFC9109B2226C4A800DF824F /* CustomAnimationPresentor.swift in Sources */,
 				CFEF5FC321ECC53300D5B9E5 /* UINavigationController+Ext.swift in Sources */,
 				CFEF605321F7187400D5B9E5 /* HomeCell.swift in Sources */,
@@ -387,6 +394,7 @@
 				CFC910622222ECD400DF824F /* PreviewPhotoContainerView.swift in Sources */,
 				CFEF5FB921EA9BA700D5B9E5 /* UserProfileHeader.swift in Sources */,
 				CFEF605121F716F100D5B9E5 /* HomeController.swift in Sources */,
+				CF6937C422299BDA00F5780B /* Comment.swift in Sources */,
 				CFEF5FBD21ECBF3700D5B9E5 /* PhotoSelectorController.swift in Sources */,
 				CF93891E21F8FF7000090DAF /* Firebase+Ext.swift in Sources */,
 				CF93892121FA1AAE00090DAF /* UserSearchController.swift in Sources */,

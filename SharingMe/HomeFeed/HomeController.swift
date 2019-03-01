@@ -96,8 +96,8 @@ class HomeController : UICollectionViewController {
             for snapshotKey in snapshotKeys{
                 print("snapshotKey: \(snapshotKey)")
                 guard let dictionary = dictionaries[snapshotKey] as? [String : Any] else {return}
-                let post = Post(user: user, dictionary: dictionary)
-                
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = snapshotKey
                 self.posts.insert(post, at: 0)
             }
             
@@ -144,6 +144,7 @@ extension HomeController : HomePostCellDelegate{
     func didTapComment(post : Post) {
         let layout = UICollectionViewFlowLayout()
         let commentsController = CommentsController(collectionViewLayout : layout)
+        commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
     }
 }
