@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol HomePostCellDelegate {
+    func didTapComment(post : Post)
+}
+
 class HomeCell : UICollectionViewCell {
     
     var post : Post?{
@@ -23,6 +27,8 @@ class HomeCell : UICollectionViewCell {
             setupAttributedCaption()
         }
     }
+    
+    var delegate : HomePostCellDelegate?
     
     fileprivate func setupAttributedCaption(){
         
@@ -70,12 +76,18 @@ class HomeCell : UICollectionViewCell {
         return button
     }()
     
-    let commentButton : UIButton = {
+    lazy var commentButton : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "comment")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.tintColor = .black
+        button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleComment(){
+        guard let post = post else {return}
+        delegate?.didTapComment(post : post)
+    }
     
     let sendButton : UIButton = {
         let button = UIButton(type: .system)
