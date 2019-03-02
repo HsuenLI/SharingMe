@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomePostCellDelegate {
     func didTapComment(post : Post)
+    func didLike(for cell : HomeCell)
 }
 
 class HomeCell : UICollectionViewCell {
@@ -40,6 +41,8 @@ class HomeCell : UICollectionViewCell {
         let timeAgoDisplay = post.creationDate.timeAgoDisplay()
         attributedText.append(NSAttributedString(string: timeAgoDisplay, attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14) ]))
         captionLabel.attributedText = attributedText
+        
+        likeButton.setImage(post.hasLiked == true ? UIImage(named: "like_selected")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     let profileImageView : CustomImageView = {
@@ -70,11 +73,16 @@ class HomeCell : UICollectionViewCell {
         return imageView
     }()
     
-    let likeButton : UIButton = {
+    lazy var likeButton : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleLike(){
+        delegate?.didLike(for: self)
+    }
     
     lazy var commentButton : UIButton = {
         let button = UIButton(type: .system)

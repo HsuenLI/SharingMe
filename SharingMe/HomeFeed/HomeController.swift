@@ -39,7 +39,7 @@ class HomeController : UICollectionViewController {
     }
     
     fileprivate func fetchAllPosts() {
-        fetchPosts()
+        //fetchPosts()
         fetchFollowingUserIds()
     }
     
@@ -87,25 +87,41 @@ class HomeController : UICollectionViewController {
             
             guard let dictionaries = snapshot.value as? [String : Any] else {return}
             
-            var snapshotKeys = [String]()
-            for key in dictionaries.keys{
-                snapshotKeys.append(key)
-            }
-            snapshotKeys.sort()
+//            var snapshotKeys = [String]()
+//            for key in dictionaries.keys{
+//                snapshotKeys.append(key)
+//            }
+//            snapshotKeys.sort()
             
-            for snapshotKey in snapshotKeys{
-                print("snapshotKey: \(snapshotKey)")
-                guard let dictionary = dictionaries[snapshotKey] as? [String : Any] else {return}
+//            for snapshotKey in snapshotKeys{
+//                print("snapshotKey: \(snapshotKey)")
+//                guard let dictionary = dictionaries[snapshotKey] as? [String : Any] else {return}
+//                var post = Post(user: user, dictionary: dictionary)
+//                post.id = snapshotKey
+//                self.posts.insert(post, at: 0)
+//            }
+            
+            dictionaries.forEach({ (key, value) in
+                print("snapshotKey: \(key)")
+                guard let dictionary = dictionaries[key] as? [String : Any] else {return}
                 var post = Post(user: user, dictionary: dictionary)
-                post.id = snapshotKey
-                self.posts.insert(post, at: 0)
-            }
-            
-            self.posts.sort(by: { (p1, p2) -> Bool in
-                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                post.id = key
+                guard let uid = Auth.auth().currentUser?.uid else {return}
+                Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let values = snapshot.value as? Int, values == 1 {
+                        post.hasLiked = true
+                    }else {
+                        post.hasLiked = false
+                    }
+                    self.posts.insert(post, at: 0)
+                    self.posts.sort(by: { (p1, p2) -> Bool in
+                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                    })
+                    self.collectionView.reloadData()
+                }, withCancel: { (error) in
+                    print("Failed to observe likes :", error)
+                })
             })
-            
-            self.collectionView.reloadData()
             
         }) { (error) in
             print("Failed to fetch posts from database: ", error)
@@ -141,6 +157,24 @@ extension HomeController : UICollectionViewDelegateFlowLayout{
 }
 
 extension HomeController : HomePostCellDelegate{
+    func didLike(for cell: HomeCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else {return}
+        var post = posts[indexPath.item]
+        guard let postId = post.id else {return}
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let values = [uid : post.hasLiked == true ? 1 : 0]
+        Database.database().reference().child("likes").child(postId).updateChildValues(values) { (error, reference) in
+            if let error = error{
+                print("Failed to update like in database : ", error)
+                return
+            }
+            post.hasLiked = !post.hasLiked
+            self.collectionView.reloadItems(at: [indexPath])
+            self.posts[indexPath.item] = post
+            print("Update like in database successfully.")
+        }
+    }
+    
     func didTapComment(post : Post) {
         let layout = UICollectionViewFlowLayout()
         let commentsController = CommentsController(collectionViewLayout : layout)

@@ -20,7 +20,7 @@ class CommentsController : UICollectionViewController{
         collectionView.backgroundColor = .white
         navigationItem.title = "Comments"
         navigationController?.navigationBar.tintColor = .darkGray
-        
+        navigationController?.navigationBar.topItem?.title = " "
         collectionView.register(CommentsCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.alwaysBounceVertical = true
         collectionView.keyboardDismissMode = .interactive
