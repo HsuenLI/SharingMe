@@ -9,7 +9,7 @@
 import Foundation
 
 struct Comment {
-    let  user : User
+    let user : User
     let uid : String
     let text : String
     

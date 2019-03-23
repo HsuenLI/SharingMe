@@ -11,8 +11,8 @@
 		CF6937C02228F45700F5780B /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6937BF2228F45700F5780B /* CommentsController.swift */; };
 		CF6937C22229975A00F5780B /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6937C12229975A00F5780B /* CommentsCell.swift */; };
 		CF6937C422299BDA00F5780B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6937C322299BDA00F5780B /* Comment.swift */; };
+		CF6C3A222240C7FD004FCC26 /* Firebase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C3A212240C7FD004FCC26 /* Firebase+Ext.swift */; };
 		CF93891C21F8F6DE00090DAF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93891B21F8F6DE00090DAF /* User.swift */; };
-		CF93891E21F8FF7000090DAF /* Firebase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */; };
 		CF93892121FA1AAE00090DAF /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93892021FA1AAE00090DAF /* UserSearchController.swift */; };
 		CF93892321FA1E9400090DAF /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93892221FA1E9400090DAF /* UserSearchCell.swift */; };
 		CF93894C21FC923F00090DAF /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93894B21FC923F00090DAF /* Date+Ext.swift */; };
@@ -53,8 +53,8 @@
 		CF6937BF2228F45700F5780B /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 		CF6937C12229975A00F5780B /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		CF6937C322299BDA00F5780B /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		CF6C3A212240C7FD004FCC26 /* Firebase+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firebase+Ext.swift"; sourceTree = "<group>"; };
 		CF93891B21F8F6DE00090DAF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Ext.swift"; sourceTree = "<group>"; };
 		CF93892021FA1AAE00090DAF /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		CF93892221FA1E9400090DAF /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		CF93894B21FC923F00090DAF /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 				CFEF5FB021E8FB9F00D5B9E5 /* UIColor+Ext.swift */,
 				CFEF5FC221ECC53300D5B9E5 /* UINavigationController+Ext.swift */,
 				CFEF604D21F5C1A500D5B9E5 /* CustomImageView.swift */,
-				CF93891D21F8FF7000090DAF /* Firebase+Ext.swift */,
+				CF6C3A212240C7FD004FCC26 /* Firebase+Ext.swift */,
 				CF93894B21FC923F00090DAF /* Date+Ext.swift */,
 			);
 			path = Utils;
@@ -379,6 +379,7 @@
 				CFEF5F9C21E8F38400D5B9E5 /* SignUpController.swift in Sources */,
 				CFC9109D2226D29600DF824F /* CustomAnimationDismisser.swift in Sources */,
 				CFEF5FAF21E8F42D00D5B9E5 /* CustomConstraints.swift in Sources */,
+				CF6C3A222240C7FD004FCC26 /* Firebase+Ext.swift in Sources */,
 				CFEF5FF421F328C300D5B9E5 /* SharePhotoController.swift in Sources */,
 				CF6937C02228F45700F5780B /* CommentsController.swift in Sources */,
 				CFEF5FB521EA904600D5B9E5 /* MainTabBarController.swift in Sources */,
@@ -396,7 +397,6 @@
 				CFEF605121F716F100D5B9E5 /* HomeController.swift in Sources */,
 				CF6937C422299BDA00F5780B /* Comment.swift in Sources */,
 				CFEF5FBD21ECBF3700D5B9E5 /* PhotoSelectorController.swift in Sources */,
-				CF93891E21F8FF7000090DAF /* Firebase+Ext.swift in Sources */,
 				CF93892121FA1AAE00090DAF /* UserSearchController.swift in Sources */,
 				CFEF604E21F5C1A500D5B9E5 /* CustomImageView.swift in Sources */,
 				CFEF604C21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift in Sources */,

@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+protocol UserProfileHeaderDeleage {
+    func didTapList()
+}
+
 class UserProfileHeader : UICollectionReusableView {
     
     //Outlets
@@ -100,22 +104,28 @@ class UserProfileHeader : UICollectionReusableView {
     
     let gridButton : UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "grid")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        button.tintColor = .black
+        button.setImage(UIImage(named: "grid"), for: .normal)
+        button.tintColor = UIColor(white: 0, alpha: 0.3)
         return button
     }()
     
-    let listButton : UIButton = {
+    lazy var listButton : UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "list")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        button.tintColor = .black
+        button.setImage(UIImage(named: "list"), for: .normal)
+        button.tintColor = UIColor(white: 0, alpha: 0.3)
+        button.addTarget(self, action: #selector(handleChangeToListView), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleChangeToListView(){
+        print("tap")
+        listButton.tintColor = UIColor.blue
+    }
     
     let bookmarkButton : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "ribbon")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor(white: 0, alpha: 0.3)
         return button
     }()
     

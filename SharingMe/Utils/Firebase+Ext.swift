@@ -14,9 +14,9 @@ extension Database{
         let userRef = Database.database().reference().child("users").child(uid)
         userRef.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let userDictionary = snapshot.value as? [String : Any] else {return}
-            let user = User(uid: uid, dictionary: userDictionary)
+            //let user = User(uid: uid, dictionary: userDictionary)
             
-            completion(user)
+            //completion(user)
             
         }) { (error) in
             print("Failed to fetch post's user data from database: ", error)
