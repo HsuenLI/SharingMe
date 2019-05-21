@@ -11,6 +11,7 @@ import UIKit
 protocol HomePostCellDelegate {
     func didTapComment(post : Post)
     func didLike(for cell : HomeCell)
+    func didTapBookmark(for cell : HomeCell)
 }
 
 class HomeCell : UICollectionViewCell {
@@ -43,6 +44,8 @@ class HomeCell : UICollectionViewCell {
         captionLabel.attributedText = attributedText
         
         likeButton.setImage(post.hasLiked == true ? UIImage(named: "like_selected")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        
+        bookmarkButton.setImage(post.hasBookmark == true ? UIImage(named: "ribbon_selected")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "ribbon")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
     let profileImageView : CustomImageView = {
@@ -104,12 +107,17 @@ class HomeCell : UICollectionViewCell {
         return button
     }()
     
-    let bookmarkButton : UIButton = {
+    lazy var bookmarkButton : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "ribbon")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.tintColor = .black
+        button.addTarget(self, action: #selector(handleBookmark), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleBookmark(){
+        delegate?.didTapBookmark(for: self)
+    }
     
     let captionLabel : UILabel = {
         let label = UILabel()

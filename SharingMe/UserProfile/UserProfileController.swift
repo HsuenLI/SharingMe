@@ -19,6 +19,8 @@ class UserProfileController : UICollectionViewController {
     var posts = [Post]()
     var userId : String?
     var isGridView = true
+    var isBookmark = false
+    var bookmarkPost = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,7 @@ class UserProfileController : UICollectionViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: self, action: #selector(handleGearButton))
         navigationController?.navigationBar.tintColor = UIColor.darkGray
         fetchUser()
-        
+        fetchBookmarkPost()
         //fetchOrderedPosts()
     }
     
@@ -105,6 +107,9 @@ extension UserProfileController : UICollectionViewDelegateFlowLayout{
     
     //Collection view cell
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isBookmark{
+            return bookmarkPost.count
+        }
         return posts.count
     }
     
@@ -114,7 +119,11 @@ extension UserProfileController : UICollectionViewDelegateFlowLayout{
             cell.post = posts[indexPath.item]
             return cell
         }
-        
+        if isBookmark{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homePostCellId, for: indexPath) as! HomeCell
+            cell.post = bookmarkPost[indexPath.item]
+            return cell
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homePostCellId, for: indexPath) as! HomeCell
         cell.post = posts[indexPath.item]
         return cell
@@ -146,12 +155,56 @@ extension UserProfileController : UserProfileHeaderDelegate{
     
     func didChangeToListView() {
         isGridView = false
+        isBookmark = false
         collectionView.reloadData()
     }
     
     func didChangeToGridView() {
         isGridView = true
+        isBookmark = false
         collectionView.reloadData()
+    }
+    
+    func didChangeToBookmarkView() {
+        isBookmark = true
+        isGridView = false
+        collectionView.reloadData()
+    }
+    
+    fileprivate func fetchBookmarkPost(){
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        Database.database().reference().child("bookmarks").observe(.value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String : Any] else {return}
+            dictionary.forEach({ (postId, value) in
+                guard let userLikeDictionary = value as? [String : Int] else {return}
+                userLikeDictionary.forEach({ (userId, mark) in
+                    if userId == uid && mark == 1{
+                        self.fetchPostWithPostId(postId: postId)
+                    }
+                })
+            })
+        }) { (error) in
+            print("failed to fetch likes post in database: ", error)
+        }
+    }
+    
+    fileprivate func fetchPostWithPostId(postId : String){
+        Database.database().reference().child("posts").observe(.value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String : Any] else {return}
+            dictionary.forEach({ (userId, post) in
+                guard let posts = post as? [String : Any] else {return}
+                posts.forEach({ (postKey, post) in
+                    if postKey == postId{
+                        Database.fetchUserWithUID(uid: userId, completion: { (user) in
+                            self.bookmarkPost.append(Post(user: user, dictionary: post as! [String : Any]))
+                            self.collectionView.reloadData()
+                        })
+                    }
+                })
+            })
+        }) { (error) in
+            print("failed to fetch likes post in database: ", error)
+        }
     }
 }
 

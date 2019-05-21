@@ -12,6 +12,7 @@ import Firebase
 protocol UserProfileHeaderDelegate {
     func didChangeToListView()
     func didChangeToGridView()
+    func didChangeToBookmarkView()
 }
 
 class UserProfileHeader : UICollectionReusableView {
@@ -115,6 +116,7 @@ class UserProfileHeader : UICollectionReusableView {
     @objc func handleGridView(){
         listButton.tintColor = UIColor(white: 0, alpha: 0.2)
         gridButton.tintColor = UIColor.mainColor()
+        bookmarkButton.tintColor = UIColor(white: 0, alpha: 0.2)
         delegate?.didChangeToGridView()
     }
     
@@ -131,15 +133,24 @@ class UserProfileHeader : UICollectionReusableView {
         print("tap")
         listButton.tintColor = UIColor.mainColor()
         gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        bookmarkButton.tintColor = UIColor(white: 0, alpha: 0.2)
         delegate?.didChangeToListView()
     }
     
-    let bookmarkButton : UIButton = {
+    lazy var bookmarkButton : UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "ribbon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "ribbon"), for: .normal)
         button.tintColor = UIColor(white: 0, alpha: 0.3)
+        button.addTarget(self, action: #selector(handleBookmark), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleBookmark(){
+        listButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        bookmarkButton.tintColor = UIColor.mainColor()
+        delegate?.didChangeToBookmarkView()
+    }
     
     let postsLabel : UILabel = {
         let label = UILabel()

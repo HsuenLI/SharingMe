@@ -121,6 +121,22 @@ class HomeController : UICollectionViewController {
                 }, withCancel: { (error) in
                     print("Failed to observe likes :", error)
                 })
+                
+                Database.database().reference().child("bookmarks").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let values = snapshot.value as? Int, values == 1 {
+                        post.hasBookmark = true
+                    }else {
+                        post.hasBookmark = false
+                    }
+                    self.posts.insert(post, at: 0)
+                    self.posts.sort(by: { (p1, p2) -> Bool in
+                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                    })
+                    self.collectionView.reloadData()
+                }, withCancel: { (error) in
+                    print("Failed to observe likes :", error)
+                })
+
             })
             
         }) { (error) in
@@ -160,6 +176,7 @@ extension HomeController : HomePostCellDelegate{
     func didLike(for cell: HomeCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else {return}
         var post = posts[indexPath.item]
+        post.hasLiked = !post.hasLiked
         guard let postId = post.id else {return}
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let values = [uid : post.hasLiked == true ? 1 : 0]
@@ -168,7 +185,6 @@ extension HomeController : HomePostCellDelegate{
                 print("Failed to update like in database : ", error)
                 return
             }
-            post.hasLiked = !post.hasLiked
             self.posts[indexPath.item] = post
             self.collectionView.reloadItems(at: [indexPath])
             print("Update like in database successfully.")
@@ -180,5 +196,23 @@ extension HomeController : HomePostCellDelegate{
         let commentsController = CommentsController(collectionViewLayout : layout)
         commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
+    }
+    
+    func didTapBookmark(for cell: HomeCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else {return}
+        var post = posts[indexPath.item]
+        post.hasBookmark = !post.hasBookmark
+        guard let postId = post.id else {return}
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let values = [uid : post.hasBookmark == true ? 1 : 0]
+        Database.database().reference().child("bookmarks").child(postId).updateChildValues(values) { (error, reference) in
+            if let error = error{
+                print("Failed to update like in database : ", error)
+                return
+            }
+            self.posts[indexPath.item] = post
+            self.collectionView.reloadItems(at: [indexPath])
+            print("Update like in database successfully.")
+        }
     }
 }
