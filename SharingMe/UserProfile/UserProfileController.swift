@@ -14,15 +14,18 @@ class UserProfileController : UICollectionViewController {
     //Outlets
     let cellId = "cellId"
     let headerId = "headerId"
+    let homePostCellId = "homePostCellId"
     var user : User?
     var posts = [Post]()
     var userId : String?
+    var isGridView = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(HomeCell.self, forCellWithReuseIdentifier: homePostCellId)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: self, action: #selector(handleGearButton))
         navigationController?.navigationBar.tintColor = UIColor.darkGray
@@ -92,7 +95,7 @@ extension UserProfileController : UICollectionViewDelegateFlowLayout{
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! UserProfileHeader
         
         header.user = self.user
-        
+        header.delegate = self
         return header
     }
     
@@ -106,14 +109,28 @@ extension UserProfileController : UICollectionViewDelegateFlowLayout{
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+        if isGridView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+            cell.post = posts[indexPath.item]
+            return cell
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homePostCellId, for: indexPath) as! HomeCell
         cell.post = posts[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - 2) / 3
-        return CGSize(width: width, height: width)
+        if isGridView{
+            let width = (view.frame.width - 2) / 3
+            return CGSize(width: width, height: width)
+        }
+        let width = view.frame.width
+        var height : CGFloat = 40 + 8 + 8 //userprofile + top + bottom space
+        height += width
+        height += 50 //action buttons
+        height += 60 //caption text
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -122,6 +139,19 @@ extension UserProfileController : UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
+    }
+}
+
+extension UserProfileController : UserProfileHeaderDelegate{
+    
+    func didChangeToListView() {
+        isGridView = false
+        collectionView.reloadData()
+    }
+    
+    func didChangeToGridView() {
+        isGridView = true
+        collectionView.reloadData()
     }
 }
 

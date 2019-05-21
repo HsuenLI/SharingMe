@@ -50,8 +50,7 @@ class MainTabBarController : UITabBarController, UITabBarControllerDelegate {
         let plusController = UIViewController()
         let plusNavController = customControllers(viewController: plusController, collectionView: nil, selectedImage: "plus_unselected", unselectedImage: "plus_unselected")
         
-        let likeController = UICollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        let likeNavController = customControllers(viewController: nil, collectionView: likeController, selectedImage: "like_selected", unselectedImage: "like_unselected")
+        let likeNavController = customControllers(viewController: nil, collectionView: LikeController(), selectedImage: "like_selected", unselectedImage: "like_unselected")
         
         let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
         let userProfileNavController = customControllers(viewController: nil, collectionView: userProfileController, selectedImage: "profile_selected", unselectedImage: "profile_unselected")

@@ -169,8 +169,8 @@ extension HomeController : HomePostCellDelegate{
                 return
             }
             post.hasLiked = !post.hasLiked
-            self.collectionView.reloadItems(at: [indexPath])
             self.posts[indexPath.item] = post
+            self.collectionView.reloadItems(at: [indexPath])
             print("Update like in database successfully.")
         }
     }

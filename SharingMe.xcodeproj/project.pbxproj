@@ -16,6 +16,8 @@
 		CF93892121FA1AAE00090DAF /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93892021FA1AAE00090DAF /* UserSearchController.swift */; };
 		CF93892321FA1E9400090DAF /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93892221FA1E9400090DAF /* UserSearchCell.swift */; };
 		CF93894C21FC923F00090DAF /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF93894B21FC923F00090DAF /* Date+Ext.swift */; };
+		CF942FAE22945C5300CA2D94 /* LikeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF942FAD22945C5300CA2D94 /* LikeController.swift */; };
+		CF942FB022945E1200CA2D94 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF942FAF22945E1200CA2D94 /* Like.swift */; };
 		CFC910622222ECD400DF824F /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC910612222ECD400DF824F /* PreviewPhotoContainerView.swift */; };
 		CFC9109B2226C4A800DF824F /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC9109A2226C4A800DF824F /* CustomAnimationPresentor.swift */; };
 		CFC9109D2226D29600DF824F /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC9109C2226D29600DF824F /* CustomAnimationDismisser.swift */; };
@@ -58,6 +60,8 @@
 		CF93892021FA1AAE00090DAF /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		CF93892221FA1E9400090DAF /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		CF93894B21FC923F00090DAF /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		CF942FAD22945C5300CA2D94 /* LikeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeController.swift; sourceTree = "<group>"; };
+		CF942FAF22945E1200CA2D94 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		CFC910612222ECD400DF824F /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
 		CFC9109A2226C4A800DF824F /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
 		CFC9109C2226D29600DF824F /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
@@ -128,6 +132,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		CF942FAC22945C3000CA2D94 /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				CF942FAD22945C5300CA2D94 /* LikeController.swift */,
+			);
+			path = Like;
+			sourceTree = "<group>";
+		};
 		CFEF5F8D21E8F38400D5B9E5 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +161,7 @@
 		CFEF5F9821E8F38400D5B9E5 /* SharingMe */ = {
 			isa = PBXGroup;
 			children = (
+				CF942FAC22945C3000CA2D94 /* Like */,
 				CF1D5D0C2216EB97004FCF9B /* Camera */,
 				CFEF604821F4CAD000D5B9E5 /* Model */,
 				CFEF5FBF21ECC11800D5B9E5 /* Utils */,
@@ -218,6 +231,7 @@
 				CFEF604921F4CADD00D5B9E5 /* Post.swift */,
 				CF93891B21F8F6DE00090DAF /* User.swift */,
 				CF6937C322299BDA00F5780B /* Comment.swift */,
+				CF942FAF22945E1200CA2D94 /* Like.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -393,11 +407,13 @@
 				CFEF5FC721ECD06E00D5B9E5 /* PhotoSelectorCell.swift in Sources */,
 				CFEF5FA221E8F38400D5B9E5 /* SharingMe.xcdatamodeld in Sources */,
 				CFC910622222ECD400DF824F /* PreviewPhotoContainerView.swift in Sources */,
+				CF942FAE22945C5300CA2D94 /* LikeController.swift in Sources */,
 				CFEF5FB921EA9BA700D5B9E5 /* UserProfileHeader.swift in Sources */,
 				CFEF605121F716F100D5B9E5 /* HomeController.swift in Sources */,
 				CF6937C422299BDA00F5780B /* Comment.swift in Sources */,
 				CFEF5FBD21ECBF3700D5B9E5 /* PhotoSelectorController.swift in Sources */,
 				CF93892121FA1AAE00090DAF /* UserSearchController.swift in Sources */,
+				CF942FB022945E1200CA2D94 /* Like.swift in Sources */,
 				CFEF604E21F5C1A500D5B9E5 /* CustomImageView.swift in Sources */,
 				CFEF604C21F4CD2100D5B9E5 /* UserProfilePhotoCell.swift in Sources */,
 			);
