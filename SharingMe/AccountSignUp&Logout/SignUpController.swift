@@ -174,8 +174,9 @@ extension SignUpController : UIImagePickerControllerDelegate, UINavigationContro
                     
                     print("Successfully uploaded profile image", profileImageURL)
                     
+                    guard let fcmToken = Messaging.messaging().fcmToken else {return}
                     guard let uid = user?.user.uid  else {return}
-                    let dictionariesValues = ["username" : username, "profileImageURL" : profileImageURL]
+                    let dictionariesValues = ["username" : username, "profileImageURL" : profileImageURL,"fcmToken" : fcmToken]
                     let values = [uid : dictionariesValues]
                     Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
                         if let err = error{

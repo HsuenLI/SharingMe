@@ -20,12 +20,24 @@ class LikeController : UICollectionViewController, UICollectionViewDelegateFlowL
         collectionView.backgroundColor = .white
         collectionView.register(HomeCell.self, forCellWithReuseIdentifier: cellId)
         navigationItem.title = "Like Posts"
+         NotificationCenter.default.addObserver(self, selector: #selector(handleLikesUpdate), name:HomeController.likesNotificationName, object: nil)
+        fetchAllPosts()
+    }
+    
+    @objc func handleLikesUpdate(){
+        fetchAllPosts()
+    }
+    
+    fileprivate func fetchAllPosts(){
+        likes.removeAll()
+        posts.removeAll()
         fetchLikePost()
+        collectionView.reloadData()
     }
     
     fileprivate func fetchLikePost(){
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        Database.database().reference().child("likes").observe(.value, with: { (snapshot) in
+        Database.database().reference().child("likes").observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictionary = snapshot.value as? [String : Any] else {return}
             dictionary.forEach({ (postId, value) in
                 guard let userLikeDictionary = value as? [String : Int] else {return}
@@ -38,17 +50,21 @@ class LikeController : UICollectionViewController, UICollectionViewDelegateFlowL
         }) { (error) in
             print("failed to fetch likes post in database: ", error)
         }
+
     }
     
     fileprivate func fetchPostWithPostId(postId : String){
-        Database.database().reference().child("posts").observe(.value, with: { (snapshot) in
+        Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictionary = snapshot.value as? [String : Any] else {return}
             dictionary.forEach({ (userId, post) in
                 guard let posts = post as? [String : Any] else {return}
                 posts.forEach({ (postKey, post) in
                     if postKey == postId{
                         Database.fetchUserWithUID(uid: userId, completion: { (user) in
-                            self.posts.append(Post(user: user, dictionary: post as! [String : Any]))
+                            self.posts.insert(Post(user: user, dictionary: post as! [String : Any]), at: 0)
+                            self.posts.sort(by: { (p1, p2) -> Bool in
+                                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                            })
                             self.collectionView.reloadData()
                         })
                     }

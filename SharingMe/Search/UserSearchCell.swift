@@ -23,7 +23,6 @@ class UserSearchCell : UICollectionViewCell {
         let iv = CustomImageView()
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
-        iv.backgroundColor = .red
         return iv
     }()
     let usernameLabel : UILabel = {

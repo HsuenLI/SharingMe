@@ -105,7 +105,7 @@ extension PhotoSelectorController : UICollectionViewDelegateFlowLayout{
         self.header = header
         
         if let selectedImage = selectedImage{
-            if let index = self.photos.index(of: selectedImage){
+            if let index = self.photos.firstIndex(of: selectedImage){
                 let selectedAsset = self.assets[index]
                 let targerSize = CGSize(width: 600, height: 600)
                 let imageManager = PHImageManager.default()

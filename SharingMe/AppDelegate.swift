@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -20,7 +21,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.rootViewController = MainTabBarController()
         FirebaseApp.configure()
+        attempRegisterForNotifications(application : application)
         return true
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Registered with fcm with token:", fcmToken)
+    }
+    
+    //listen user notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("Registered for notification :" , deviceToken)
+    }
+    
+    private func attempRegisterForNotifications(application : UIApplication){
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        //User notification auth
+    
+        let options : UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, err) in
+            if let err = err{
+                print("failed to request auth:", err)
+                return
+            }
+            
+            if granted{
+                print("auth granted")
+            }else{
+                print("auth denied")
+            }
+        }
+        application.registerForRemoteNotifications()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

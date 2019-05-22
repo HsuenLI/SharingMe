@@ -13,7 +13,8 @@ class HomeController : UICollectionViewController {
     
     var cellId = "cellId"
     var posts = [Post]()
-    
+    static let likesNotificationName = NSNotification.Name(rawValue: "likes")
+
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -39,7 +40,7 @@ class HomeController : UICollectionViewController {
     }
     
     fileprivate func fetchAllPosts() {
-        //fetchPosts()
+        fetchPosts()
         fetchFollowingUserIds()
     }
     
@@ -121,21 +122,6 @@ class HomeController : UICollectionViewController {
                 }, withCancel: { (error) in
                     print("Failed to observe likes :", error)
                 })
-                
-                Database.database().reference().child("bookmarks").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let values = snapshot.value as? Int, values == 1 {
-                        post.hasBookmark = true
-                    }else {
-                        post.hasBookmark = false
-                    }
-                    self.posts.insert(post, at: 0)
-                    self.posts.sort(by: { (p1, p2) -> Bool in
-                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
-                    })
-                    self.collectionView.reloadData()
-                }, withCancel: { (error) in
-                    print("Failed to observe likes :", error)
-                })
 
             })
             
@@ -187,6 +173,7 @@ extension HomeController : HomePostCellDelegate{
             }
             self.posts[indexPath.item] = post
             self.collectionView.reloadItems(at: [indexPath])
+             NotificationCenter.default.post(name: HomeController.likesNotificationName, object: nil)
             print("Update like in database successfully.")
         }
     }

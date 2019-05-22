@@ -14,7 +14,7 @@ class MainTabBarController : UITabBarController, UITabBarControllerDelegate {
     //Disable select tab bar item
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
-        let index = viewControllers?.index(of: viewController)
+        let index = viewControllers?.firstIndex(of: viewController)
         if index == 2{
             let photoSelectorController = PhotoSelectorController(collectionViewLayout : UICollectionViewFlowLayout())
             let photoSelectorNavController = UINavigationController(rootViewController: photoSelectorController)
